@@ -118,6 +118,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            holder.getTextViewProductMore().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
 
         @Override
@@ -125,12 +132,17 @@ public class MainActivity extends AppCompatActivity {
             return productList.size();
         }
 
-        public class ProductViewHolder extends RecyclerView.ViewHolder{
+        public class ProductViewHolder extends RecyclerView.ViewHolder {
 
             TextView textViewPrice ;
             NetworkImageView imageViewProduct ;
             TextView textViewProductName ;
             TextView textViewProductMore ;
+
+            public TextView getTextViewProductMore() {
+                return textViewProductMore;
+            }
+
             ImageButton imageButtonFav ;
 
             public ProductViewHolder(View itemView) {
