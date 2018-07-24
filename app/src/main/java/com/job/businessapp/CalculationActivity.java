@@ -32,8 +32,11 @@ public class CalculationActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         getSupportActionBar().setTitle("Get Discount");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getProductprice = getIntent().getStringExtra(PRODUCTPRICE);
+
+        textView.setText(getProductprice);
     }
 
     @OnClick({R.id.textView, R.id.button5, R.id.button15, R.id.button30})
@@ -43,18 +46,18 @@ public class CalculationActivity extends AppCompatActivity {
                 Toast.makeText(this, ""+textView.getText(), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.button5:
-                calculateDiscount(5);
+                calculateDiscount(5d);
                 break;
             case R.id.button15:
-                calculateDiscount(15);
+                calculateDiscount(15d);
                 break;
             case R.id.button30:
-                calculateDiscount(30);
+                calculateDiscount(30d);
                 break;
         }
     }
 
-    private void calculateDiscount(int perc){
+    private void calculateDiscount(double perc){
 
         String temp  = getProductprice.replace("$","");
 

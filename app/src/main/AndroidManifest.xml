@@ -30,7 +30,9 @@
             android:name=".ProductWebActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".AnimActivity" />
-        <activity android:name=".CalculationActivity"></activity>
+        <activity android:name=".CalculationActivity"
+            android:parentActivityName=".MainActivity"
+            />
     </application>
 
 </manifest>
