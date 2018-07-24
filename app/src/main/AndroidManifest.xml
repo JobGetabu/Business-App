@@ -29,7 +29,8 @@
         <activity
             android:name=".ProductWebActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".AnimActivity"></activity>
+        <activity android:name=".AnimActivity" />
+        <activity android:name=".CalculationActivity"></activity>
     </application>
 
 </manifest>
