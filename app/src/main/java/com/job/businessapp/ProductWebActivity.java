@@ -3,6 +3,7 @@ package com.job.businessapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 
 public class ProductWebActivity extends AppCompatActivity {
 
@@ -23,7 +24,14 @@ public class ProductWebActivity extends AppCompatActivity {
             finish();
         }
 
-        WebView myWebView = (WebView) findViewById(R.id.webView);
-        myWebView.loadUrl(prourl);
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+
+        WebViewController webViewController = new WebViewController(progressBar);
+        WebView webView = (WebView) findViewById(R.id.webView);
+        webView.setWebViewClient(webViewController);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(prourl);
+
     }
 }
+

@@ -1,5 +1,6 @@
 package com.job.businessapp;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,8 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.job.businessapp.ProductWebActivity.PRODUCTURL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(ProductViewHolder holder, int position) {
+        public void onBindViewHolder(ProductViewHolder holder, final int position) {
             //This is a much cleaner way of popularizing the recycle
             // holder.bind(productEntries.get(position),imageRequester);
 
@@ -106,6 +109,15 @@ public class MainActivity extends AppCompatActivity {
             holder.textViewPrice.setText(productList.get(position).getPrice());
             String url = getProductImageRequester(productList, position);
             ImageRequester.setImagFromUrlr(holder.imageViewProduct, url);
+
+            holder.imageViewProduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, ProductWebActivity.class);
+                    intent.putExtra(PRODUCTURL, productList.get(position).getProduct_url());
+                    startActivity(intent);
+                }
+            });
         }
 
         @Override
@@ -118,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textViewPrice ;
             NetworkImageView imageViewProduct ;
             TextView textViewProductName ;
+            TextView textViewProductMore ;
             ImageButton imageButtonFav ;
 
             public ProductViewHolder(View itemView) {
@@ -126,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 textViewPrice = (TextView) itemView.findViewById(R.id.price);
                 imageViewProduct = (NetworkImageView) itemView.findViewById(R.id.product_image);
                 textViewProductName = (TextView) itemView.findViewById(R.id.product_name);
+                textViewProductMore = (TextView) itemView.findViewById(R.id.more);
                 imageButtonFav = (ImageButton) itemView.findViewById(R.id.favorite_button);
 
 

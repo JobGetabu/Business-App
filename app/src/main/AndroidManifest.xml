@@ -26,7 +26,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ProductWebActivity"></activity>
+        <activity android:name=".ProductWebActivity" android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
