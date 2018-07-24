@@ -23,6 +23,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.job.businessapp.AnimActivity.IMGURL;
 import static com.job.businessapp.ProductWebActivity.PRODUCTURL;
 
 public class MainActivity extends AppCompatActivity {
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onBindViewHolder: value of product name +"+String.valueOf(productList.get(position).getProductName()));
             holder.textViewProductName.setText(String.valueOf(productList.get(position).getProductName()));
             holder.textViewPrice.setText(productList.get(position).getPrice());
-            String url = getProductImageRequester(productList, position);
+            final String url = getProductImageRequester(productList, position);
             ImageRequester.setImagFromUrlr(holder.imageViewProduct, url);
 
             holder.imageViewProduct.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
             holder.getTextViewProductMore().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    Intent intent = new Intent(MainActivity.this, AnimActivity.class);
+                    intent.putExtra(IMGURL, url);
+                    startActivity(intent);
 
                 }
             });
