@@ -56,5 +56,18 @@
                 android:minWidth="48dp"
                 app:srcCompat="@drawable/ic_favorite_not_vector" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:autoLink="web"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="more"
+            android:background="#eaeaea"
+            android:textColor="#454545"
+            android:textSize="16sp" />
     </LinearLayout>
 </android.support.v7.widget.CardView>
