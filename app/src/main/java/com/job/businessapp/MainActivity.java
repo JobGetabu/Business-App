@@ -5,13 +5,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.google.gson.reflect.TypeToken;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.job.businessapp.AnimActivity.IMGURL;
+import static com.job.businessapp.CalculationActivity.PRODUCTPRICE;
 import static com.job.businessapp.ProductWebActivity.PRODUCTURL;
 
 public class MainActivity extends AppCompatActivity {
@@ -101,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(ProductViewHolder holder, final int position) {
+        public void onBindViewHolder(final ProductViewHolder holder, final int position) {
             //This is a much cleaner way of popularizing the recycle
             // holder.bind(productEntries.get(position),imageRequester);
 
@@ -124,10 +128,43 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(MainActivity.this, AnimActivity.class);
-                    intent.putExtra(IMGURL, url);
-                    startActivity(intent);
 
+
+
+                    PopupMenu popup = new PopupMenu(MainActivity.this, holder.getTextViewProductMore());
+                    //Inflating the Popup using xml file
+                    popup.getMenuInflater()
+                            .inflate(R.menu.popmenu, popup.getMenu());
+
+                    //registering popup with OnMenuItemClickListener
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem item) {
+
+                            if (item.getTitle() == "Product Image"){
+
+                                Intent intent = new Intent(MainActivity.this, AnimActivity.class);
+                                intent.putExtra(IMGURL, url);
+                                startActivity(intent);
+
+                            }
+                            if (item.getTitle() == "Product Discount"){
+
+                                Intent intent = new Intent(MainActivity.this, CalculationActivity.class);
+                                intent.putExtra(PRODUCTPRICE, productList.get(position).getPrice());
+                                startActivity(intent);
+                            }
+
+                            Toast.makeText(
+                                    MainActivity.this,
+                                    "You Clicked : " + item.getTitle(),
+                                    Toast.LENGTH_SHORT
+                            ).show();
+
+                            return true;
+                        }
+                    });
+
+                    popup.show(); //showing popup menu
                 }
             });
         }

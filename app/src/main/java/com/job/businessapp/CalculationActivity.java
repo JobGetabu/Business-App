@@ -13,7 +13,7 @@ import butterknife.OnClick;
 
 public class CalculationActivity extends AppCompatActivity {
 
-    private static final String PRODUCTPRICE = "PRODUCTPRICE";
+    public static final String PRODUCTPRICE = "PRODUCTPRICE";
     @BindView(R.id.textView)
     TextView textView;
     @BindView(R.id.button5)
