@@ -140,14 +140,15 @@ public class MainActivity extends AppCompatActivity {
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(MenuItem item) {
 
-                            if (item.getTitle() == "Product Image"){
+                            if (item.getTitle().equals("Product Image")){
 
                                 Intent intent = new Intent(MainActivity.this, AnimActivity.class);
                                 intent.putExtra(IMGURL, url);
                                 startActivity(intent);
 
                             }
-                            if (item.getTitle() == "Product Discount"){
+
+                            if (item.getTitle().equals("Product Discount")){
 
                                 Intent intent = new Intent(MainActivity.this, CalculationActivity.class);
                                 intent.putExtra(PRODUCTPRICE, productList.get(position).getPrice());
